@@ -41,24 +41,25 @@ const SignUpTwo = ({ history }) => {
         <h1 className="create-title">Create an Account</h1>
       </div>
 
-      <br/>
+       
+      <div className="content2">
+        <div className="steps2">
+          <li className="numbone2">1</li>
+          <li className="ntwo2">2</li> 
+        </div>
 
-      <div className="steps2">
-        <li className="numbone2">1</li>
-        <li className="ntwo2">2</li> 
-      </div>
-
-
- 
       <Upload></Upload>
-      <p>Tell us about yourself</p>
+      <p>Tell us about yourself!</p>
 
       <form onSubmit={handleSubmit}>
-        
-          <textarea className="Description" name="biodetails" type="textarea" placeholder="Write here.."/>
-          <input type="submit" value="Submit" Link to= "/"/>
+          <p style={{fontSize: '9pt'}}><i> * should not be longer than 80 characters *</i></p>
+          <textarea className="text-description" name="biodetails" type="textarea" placeholder="Write here.."/>
+          <br/>
+          <input  id="nextbtn" type="submit" value="Submit" Link to= "/"/>
       </form>
       {/*<button><Link to="/">Done</Link></button>*/}
+      </div>
+
     </div>
   );
 };

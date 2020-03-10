@@ -10,13 +10,14 @@ import Logo from '../assets/WeExplore-logo.svg';
 
  let information; 
  let imageUrL;
+ let name;
 
 class Profile extends Component {
 
   constructor(props) {
 
     super(props);
-    this.state = { bioDetails: '',  image: '' }
+    this.state = { bioDetails: '...',  image: '', userName: "..." }
     
   }
 
@@ -34,15 +35,14 @@ class Profile extends Component {
  
     // console.log(storageRef.getMetadata())
 
-
     return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
      information = snapshot.val().biodetails || 'Anonymous';
      imageUrL = snapshot.val().profileImage
+     name = snapshot.val().username
     //  let stuff = snapshot.val();
     //  console.log(stuff)
     })
     
-
    }
 
     
@@ -51,7 +51,8 @@ class Profile extends Component {
         setTimeout(() => {
           this.setState({
             bioDetails: information,
-            image: imageUrL
+            image: imageUrL,
+            userName: name,
           });
           // console.log("the state is: " + this.state.bioDetails)
         }, 300)
@@ -70,10 +71,15 @@ class Profile extends Component {
             </div>
             
             <div className="content">
-                 <img className="image" id="myimg" src={this.state.image}/>
-                <h1>hello</h1>
-                {/* <button onClick={this.buttonFunction}>button</button> */}
-                <p>{this.state.bioDetails}</p>
+
+              <div className="profileInformation">
+                
+                <img className="image profileImg" id="myimg" src={this.state.image}/>
+                  <div className="bio-name">
+                    <h3>{this.state.userName}</h3>
+                    <p>{this.state.bioDetails}</p>
+                  </div>
+                </div>
             </div>
 
             <BottomNav></BottomNav>

@@ -251,13 +251,17 @@ label{
 
   /************ Signup Two ***************/
 
+  .content2{
+    padding-top: 5vh;
+    padding-bottom: 10vh;
+  }
+
   .steps2{
     margin: 0 auto;
     list-style: none;
     display: flex;
     width: 50%;
     justify-content: center;
-    margin-top: 2%;
     margin-bottom: 2%;
     padding-right: 40px;
  }
@@ -286,6 +290,13 @@ label{
     border-radius: 50%;
     }
 
+  .text-description{
+    width: 40%;
+    height: 50px;
+    resize: none;
+    border-radius: 5px;
+    padding:10px;
+  }
 
 /****************** Navigation Bar **********************/
 .navigationBar{
@@ -299,6 +310,17 @@ label{
   left: 0px;
   margin-bottom: 0px;
   z-index: 4;
+}
+
+.dotNotification{
+   
+    display: block;
+    position: relative;
+    width: 15px;
+    height: 15px;  
+    border-radius: 50%; 
+    background: red;
+ 
 }
 
 .leaderIcon, .discoverIcon, .categoriesIcon, .profileIcon{
@@ -469,4 +491,26 @@ label{
 
   /*************** profile **************/
 
- 
+  .profileInformation{
+    position: fixed;
+    width: 80%;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+  }
+
+ .profileImg{
+   float: left;
+   margin-left: 15%;
+   align-items: center;
+    
+ }
+
+ .bio-name{
+  float: left;
+  padding-left: 40px;
+  width: 50%;
+  text-align: left;
+  }

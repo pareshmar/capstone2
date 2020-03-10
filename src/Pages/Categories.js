@@ -105,43 +105,47 @@ class Categories extends Component {
         errmodal.style.display = "none";
     }
 
-    acceptActivity = () => {
+    acceptActivity = function () {
         let userId = firebase.auth().currentUser.uid;
-            firebase.database().ref('users/' + userId + '/activeActivity').on('value', function (snapshot) {
+        firebase.database().ref('users/' + userId +
+            '/activeActivity').once('value', function (snapshot) {
                 currentActivity = snapshot.val();
-                if (currentActivity.length <= 0) {
+                if (currentActivity === null || currentActivity === ' ' ||
+                    currentActivity.length <= 0) {
                     firebase.database().ref('users/' + userId).update({
                         activeActivity: activityDescription
-                    })
+
+                    });
+                    console.log('the activeActivity changed');
                     let modal = document.getElementById("modal")
                     modal.style.display = "none";
+                    console.log('Activity added to Firebase: ' +
+                        currentActivity + ' ' + currentActivity.length);
 
-                    console.log(currentActivity.length);
 
-                } else if (currentActivity.length >= 1){
-                    
-                        let modal = document.getElementById("modal")
-                        modal.style.display = "none";
-                        let errmodal = document.getElementById("errorModal")
-                        errmodal.style.display = "block";
-                        console.log("You have an activity");
+                } else {
 
-                        console.log(currentActivity.length);
+                    let modal = document.getElementById("modal")
+                    modal.style.display = "none";
+                    let errmodal = document.getElementById("errorModal")
+                    errmodal.style.display = "block";
+                    console.log("You have an activity");
+                    console.log(currentActivity);
+
                 }
             })
-        // let currentActivity = this.state.activity;
     }
+
 
 
     render() {
         return (
             <div>
-                <div className="header" style={{backgroundColor: '#fe4a49'}}>
+                <div className="header" style={{ backgroundColor: '#fe4a49' }}>
                     <img id="logo" src={Logo} width="65" alt="WeExplore Logo" />
                     <h1>| Activities</h1>
                 </div>
 
-               
 
                 <div className="content">
 
@@ -170,50 +174,50 @@ class Categories extends Component {
                         <p style={{ backgroundColor: 'purple' }} className="categoryTitleBlock"> Culture</p>
                         <img className="culture" src="https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1115&q=80" onClick={this.category}></img>
                     </div>
-            
-             </div>
+
+                </div>
 
 
 
 
 
 
-                    <div className="modal-class" id="modal">
+                <div className="modal-class" id="modal">
 
-                        <div className="close" onClick={this.closeModal}>&times; </div>
+                    <div className="close" onClick={this.closeModal}>&times; </div>
 
-                        <div className="modal-content">
+                    <div className="modal-content">
 
-                            <h2 className="categoryTitle">{categoryTitle}</h2>
-                            <p><i>Activity: </i>{this.state.activity}</p>
-                        </div>
+                        <h2 className="categoryTitle">{categoryTitle}</h2>
+                        <p><i>Activity: </i>{this.state.activity}</p>
+                    </div>
 
-                        <div className="buttons">
-                            <button className="acceptbtn" onClick={this.acceptActivity}>Accept</button>
-                            <button className="shufflebtn" onClick={this.randomize}>
+                    <div className="buttons">
+                        <button className="acceptbtn" onClick={this.acceptActivity}>Accept</button>
+                        <button className="shufflebtn" onClick={this.randomize}>
 
-                            </button>
-
-                        </div>
+                        </button>
 
                     </div>
-            
-                    
+
+                </div>
+
+
                 <div className="modal-class" id="errorModal">
 
                     <div className="close" onClick={this.closeModal}>&times; </div>
 
                     <div className="modal-content">
 
-                        
+
                         <p>no</p>
                     </div>
- 
+
                 </div>
 
 
 
-                    
+
                 <BottomNav></BottomNav>
 
             </div>
