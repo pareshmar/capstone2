@@ -136,14 +136,14 @@ class Categories extends Component {
     render() {
         return (
             <div>
-                <div className="header">
+                <div className="header" style={{backgroundColor: '#fe4a49'}}>
                     <img id="logo" src={Logo} width="65" alt="WeExplore Logo" />
                     <h1>| Activities</h1>
                 </div>
 
-                <br />
+               
 
-                <div className="allCategories">
+                <div className="content">
 
                     <div className="categorydiv">
                         <p style={{ backgroundColor: 'green' }} className="categoryTitleBlock">Outdoors</p>
@@ -173,6 +173,11 @@ class Categories extends Component {
             
              </div>
 
+
+
+
+
+
                     <div className="modal-class" id="modal">
 
                         <div className="close" onClick={this.closeModal}>&times; </div>
@@ -192,8 +197,7 @@ class Categories extends Component {
                         </div>
 
                     </div>
-
-                    
+            
                     
                 <div className="modal-class" id="errorModal">
 

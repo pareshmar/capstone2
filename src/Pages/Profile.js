@@ -6,6 +6,8 @@ import firebase from 'firebase';
 import BottomNav from '../Components/Navigation';
 import { render } from '@testing-library/react';
 
+import Logo from '../assets/WeExplore-logo.svg';
+
  let information; 
  let imageUrL;
 
@@ -61,11 +63,18 @@ class Profile extends Component {
     render(){
       return(
         <div>
+
+            <div className="header" style={{backgroundColor: '#2ab7ca'}}>
+                    <img id="logo" src={Logo} width="65" alt="WeExplore Logo" />
+                    <h1>| MyPage</h1>
+            </div>
             
-            <img className="image" id="myimg" src={this.state.image}/>
-            <h1>hello</h1>
-            {/* <button onClick={this.buttonFunction}>button</button> */}
-            <p>{this.state.bioDetails}</p>
+            <div className="content">
+                 <img className="image" id="myimg" src={this.state.image}/>
+                <h1>hello</h1>
+                {/* <button onClick={this.buttonFunction}>button</button> */}
+                <p>{this.state.bioDetails}</p>
+            </div>
 
             <BottomNav></BottomNav>
 

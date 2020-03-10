@@ -318,9 +318,10 @@ label{
 
     /* Categories */
 
-    .allCategories{
-      padding-top: 5%;
-      padding-bottom: 5%;
+    /* applies to all pages with content */
+    .content{
+      padding-top: 15vh;
+      padding-bottom: 13vh;
     }
 
     #logo{
@@ -329,7 +330,6 @@ label{
 
     .header{
       display: flex;
-      background-color: var(--main-red);
       padding-left: 15%;
       color: white;
       font-family: hobo-std; 
@@ -463,6 +463,10 @@ label{
     transform: translateY(1px);
   }
 
-  .errorModal{
+  /* .errorModal{
     
-  }
+  } */
+
+  /*************** profile **************/
+
+ 
