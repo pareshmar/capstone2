@@ -99,35 +99,39 @@ class Categories extends Component {
     // close modal
     closeModal = () => {
         let modal = document.getElementById("modal")
+        let errmodal = document.getElementById("errorModal")
+
         modal.style.display = "none";
+        errmodal.style.display = "none";
     }
 
     acceptActivity = () => {
-        firebase.auth().onAuthStateChanged(function (user) {
-            firebase.database().ref('users/' + user.uid + '/activeActivity').on('value', function (snapshot) {
+        let userId = firebase.auth().currentUser.uid;
+            firebase.database().ref('users/' + userId + '/activeActivity').on('value', function (snapshot) {
                 currentActivity = snapshot.val();
-
-                if (currentActivity === "") {
-                    firebase.database().ref('users/' + user.uid).update({
+                if (currentActivity.length <= 0) {
+                    firebase.database().ref('users/' + userId).update({
                         activeActivity: activityDescription
-                    });
+                    })
                     let modal = document.getElementById("modal")
                     modal.style.display = "none";
-                    console.log(user.uid);
 
-                } else {
-                    firebase.database().ref('users/' + user.uid + '/activeActivity').on('value', function (snapshot) {
-                        currentActivity = snapshot.val();
+                    console.log(currentActivity.length);
+
+                } else if (currentActivity.length >= 1){
+                    
                         let modal = document.getElementById("modal")
                         modal.style.display = "none";
+                        let errmodal = document.getElementById("errorModal")
+                        errmodal.style.display = "block";
                         console.log("You have an activity");
-                    })
+
+                        console.log(currentActivity.length);
                 }
             })
-
-        });
         // let currentActivity = this.state.activity;
     }
+
 
     render() {
         return (
@@ -166,7 +170,8 @@ class Categories extends Component {
                         <p style={{ backgroundColor: 'purple' }} className="categoryTitleBlock"> Culture</p>
                         <img className="culture" src="https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1115&q=80" onClick={this.category}></img>
                     </div>
-
+            
+             </div>
 
                     <div className="modal-class" id="modal">
 
@@ -188,8 +193,23 @@ class Categories extends Component {
 
                     </div>
 
+                    
+                    
+                <div className="modal-class" id="errorModal">
+
+                    <div className="close" onClick={this.closeModal}>&times; </div>
+
+                    <div className="modal-content">
+
+                        
+                        <p>no</p>
+                    </div>
+ 
                 </div>
 
+
+
+                    
                 <BottomNav></BottomNav>
 
             </div>

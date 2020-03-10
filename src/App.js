@@ -22,8 +22,7 @@ import BottomNav from './Components/Navigation';
 function App() {
   return (
     <div className="App">
-      {/* <Upload/>
-      <Categories/> */}
+       
 
        <AuthProvider>
         <Router>

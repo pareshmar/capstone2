@@ -26,6 +26,7 @@ const SignUp = ({history}) => {
           username: username.value,
           email: email.value,
          });
+
         console.log(user.uid);
       } else {
 

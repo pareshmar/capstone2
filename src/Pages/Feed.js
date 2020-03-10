@@ -4,8 +4,6 @@ import { withRouter} from "react-router";
 import firebase from 'firebase';
 
 
-
-
 // Components 
 import BottomNav from '../Components/Navigation';
 

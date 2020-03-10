@@ -462,3 +462,7 @@ label{
     box-shadow: 0 5px var(--pushed-blue);
     transform: translateY(1px);
   }
+
+  .errorModal{
+    
+  }

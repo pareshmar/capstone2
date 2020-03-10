@@ -14,6 +14,7 @@ class BottomNav extends Component {
         return(
             <div>
                 <ul className="navigationBar">
+
                     <li>
                         <Link to ="/leader" style={{fill:"#B7B7B7"}} activeStyle={{fill: "#fed766"}}> 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149.88 155.06" className="leaderIcon">
@@ -22,7 +23,7 @@ class BottomNav extends Component {
                         </Link>
                     </li>
                     <li>
-                        <Link to ="/feed" style={{fill:"#B7B7B7"}} activeStyle={{fill: "#ffa500"}}>
+                        <Link to ="/" style={{fill:"#B7B7B7"}} activeStyle={{fill: "#ffa500"}}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136.67 191" className="discoverIcon">
                             <rect class="cls-1" x="21.22" y="93.38" width="71.31" height="95.08" rx="12"/>
                             <ellipse class="cls-1" cx="109.93" cy="62.39" rx="26.74" ry="19.1"/>

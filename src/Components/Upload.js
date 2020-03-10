@@ -18,9 +18,10 @@ class Upload extends Component {
                 // User logged in already or has just logged in.
                 console.log(user.uid);
                 let filename = selectedFile.name;
-                const storageRef = firebase.storage().ref(user.uid + '/' + filename)
+                const storageRef = firebase.storage().ref(user.uid + '/profileImage/' + filename)
                 const uploadTask = storageRef.put(selectedFile)
 
+               
                 // Register three observers:
                 // 1. 'state_changed' observer, called any time the state changes
                 // 2. Error observer, called on failure
@@ -34,10 +35,32 @@ class Upload extends Component {
                 }, function (error) {
                     // Handle unsuccessful uploads
                 }, function () {
+
+                    // var postKey = firebase.database().ref('users').push().key;
+                    // var downloadURL = uploadTask.snapshot.downloadURL; 
+                    // var updates = {};
+                    // var postData = {
+                    //     url: downloadURL
+                    // }
+
+                    // updates['users' + postKey] = postData
+                    // firebase.database().ref().update(updates);
+
+                    // console.log(downloadURL)
+
                     storageRef.getDownloadURL().then(url => {
+
+                        firebase.database().ref('users/'+ user.uid).update({
+                           profileImage: url
+                           });
+
                         var img = document.getElementById('myimg');
                         img.src = url;
                     })
+
+                   
+
+                   
                 },
                 );
                     // ADD EXTRA FUNCTION HERE
