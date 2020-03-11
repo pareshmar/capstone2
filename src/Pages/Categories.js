@@ -1,10 +1,13 @@
 // import firebase from '../Firebase/firebase';
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import firebase from 'firebase';
 
 import Logo from '../assets/WeExplore-logo.svg';
+import Error from '../assets/error.svg';
 
 import BottomNav from '../Components/Navigation';
+import { Redirect } from 'react-router-dom';
+import { AuthContext } from '../Auth';
 
 let activity;
 let activityDescription;
@@ -122,6 +125,7 @@ class Categories extends Component {
                     console.log('Activity added to Firebase: ' +
                         currentActivity + ' ' + currentActivity.length);
 
+                        window.location.reload(false);
 
                 } else {
 
@@ -132,9 +136,11 @@ class Categories extends Component {
                     console.log("You have an activity");
                     console.log(currentActivity);
 
+
                 }
-            })
-    }
+            })        
+            // window.location.assign("https://www.w3schools.com")
+        }
 
 
 
@@ -209,8 +215,8 @@ class Categories extends Component {
 
                     <div className="modal-content">
 
-
-                        <p>no</p>
+                        <img src={Error} alt="error" height="50"></img>
+                        <p>Sorry you must complete your chosen activity before starting a new one.</p>
                     </div>
 
                 </div>
