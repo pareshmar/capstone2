@@ -78,7 +78,7 @@ class Upload extends Component {
             <div className="uploading">
                 <input type="file" onChange={this.fileSelected}></input>
                 <br />
-                <img className="image" id="myimg" />
+                <img className="image" id="myimg" alt="user" />
             </div>
         )
     }

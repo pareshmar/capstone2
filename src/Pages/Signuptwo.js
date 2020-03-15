@@ -1,8 +1,6 @@
-import React, { useCallback, useContext, Component } from 'react';
-import { withRouter, Redirect } from "react-router";
-import { Link } from 'react-router-dom';
+import React, { useCallback} from 'react';
+import { withRouter} from "react-router";
 import firebase from "../Firebase/firebase";
-import { AuthContext } from "../Auth";
 import Upload from '../Components/Upload';
  
 const SignUpTwo = ({ history }) => {

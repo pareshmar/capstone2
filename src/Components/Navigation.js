@@ -1,11 +1,9 @@
 import React, { Component, } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import firebase from 'firebase';
-// Nav Imports
+ 
 
-import Profile from '../assets/nav/person2.svg';
-import Leadership from '../assets/nav/scores.svg';
-import Discover from '../assets/nav/feed.svg';
+ 
 let activityIsActive;
 
 class BottomNav extends Component {
@@ -58,7 +56,7 @@ class BottomNav extends Component {
                 <ul className="navigationBar">
 
                     <li>
-                        <Link to="/leader" style={{ fill: "#B7B7B7" }}
+                        <NavLink to="/Leader" style={{ fill: "#B7B7B7" }}
                             activeStyle={{ fill: "#fed766" }}>
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 149.88 155.06" className="leaderIcon">
@@ -66,10 +64,10 @@ class BottomNav extends Component {
 53.82 114.4 0 120.87 27.6 74.22 4.82 25.03 57.71 36.87 97.45 0 102.54
 53.96 149.88 80.36 100.13 101.88 89.66 155.06"/>
                             </svg>
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
-                        <Link to="/" style={{ fill: "#B7B7B7" }}
+                        <NavLink to="/" style={{ fill: "#B7B7B7" }}
                             activeStyle={{ fill: "#ffa500" }}>
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 136.67 191" className="discoverIcon">
@@ -82,7 +80,7 @@ class BottomNav extends Component {
                                 <polygon className="cls-1" points="109.51 0
 97.62 189.3 128.27 189.3 109.51 0"/>
                             </svg>
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
                         <NavLink to="/categories"

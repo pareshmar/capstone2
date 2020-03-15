@@ -1,11 +1,10 @@
 // export default SignUp;
 
-import React, {useCallback, useContext} from 'react';
-import {withRouter, Redirect } from "react-router";
+import React, {useCallback} from 'react';
+import {withRouter} from "react-router";
 import { Link } from 'react-router-dom';
 import firebase from "../Firebase/firebase";
-import { AuthContext } from "../Auth";
-
+ 
 const SignUp = ({history}) => {
   const handleSignup = useCallback(async event => {
     event.preventDefault();

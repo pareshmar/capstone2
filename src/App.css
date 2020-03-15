@@ -47,27 +47,7 @@ h2,h3,h4{font-family: 'Spartan';}
   font-size: 14pt;
   font-family: 'Open Sans';
 }
-
-@media only screen and (max-width: 900px) {
-  /* login */
-  .imagebk {
-    background-image: url("https://images.unsplash.com/photo-1491331568367-82b3c8018969?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1868&q=80");
-    background-repeat: no-repeat; 
-    background-position: center;  
-    background-size: cover;
-  }
-
-  .transbox{
-    background: rgba(0, 0, 0, 0.3);
-    height: 100vh;
-  }
-
-  .login, .signUpTwo{
-    font-size: 12pt;
-  }
  
-}
-
 .transbox{
   background: rgba(0, 0, 0, 0.4);
   height: 100vh;
@@ -290,7 +270,8 @@ label{
 .navigationBar{
   display: flex;
   background: rgb(235, 235, 235);
-  padding: .5%;
+  padding-top: 1em;
+  padding-bottom: 1em;
   justify-content: space-around;
   width: 100%;
   position: fixed;
@@ -298,6 +279,11 @@ label{
   left: 0px;
   margin-bottom: 0px;
   z-index: 4;
+}
+
+ul.navigationBar{
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .dotNotification{
@@ -310,6 +296,7 @@ label{
     border-radius: 50%; 
     background: red;
     display: none;
+    margin-top: .5em;
 }
 
 .leaderIcon, .discoverIcon, .categoriesIcon, .profileIcon{
@@ -386,6 +373,7 @@ label{
     border: 3px solid var(--main-blue);
     border-radius: 12px;
     z-index: 2;
+    padding-top: 1em;
     
     position: fixed;
     top: 50vh;
@@ -479,13 +467,12 @@ label{
   /*************** profile **************/
 
   .profileInformation{
-    position: fixed;
-    width: 80%;
-    margin-left: 10vw;
-    margin-right: 10vw;
-    height: 20vh;
+    width: 100%;
+    padding-top: 2em;
+    padding-bottom: 2em;
     display: flex;
     align-items: center;
+    background: white;
   }
 
  .profileImg{
@@ -501,6 +488,45 @@ label{
   text-align: left;
   }
 
+ 
+  .posts{
+    display: flex;
+     margin: 2% 13%;
+    border: 2px solid rgb(153, 151, 151, 0.3);
+    border-radius: 12px;
+    width: 80v;
+    height: 50vh;
+  }
+
+  .profileModal{
+    background-color: #606060;
+    color: white;
+    border: solid 3px rgb(207, 21, 21);
+    border-radius: 15px;
+    position: fixed;
+    bottom: 8em;
+    right: 5%;
+    height: 50px;
+    box-shadow: 3px 3px 5px grey;
+    cursor: pointer;
+   }
+
+   .modal-post{
+     padding-bottom: 1em;
+     width:100%;
+   }
+
+   /* Make this is other modal text responsive so it shrinks with size */
+   .delete-activitybtn{
+     background: none;
+     border: none;
+     color: red;
+     text-decoration: underline;
+     cursor: pointer;
+     float: left;
+     padding-left: 2em;
+   }
+ 
 
   /* Leader Page */
   .content3{
@@ -512,7 +538,99 @@ label{
   }
 
   .notfeatured{
-    padding: 10%;
-    border: 2px solid rgb(218, 218, 218);
-    border-radius: 12px;
+    padding-top: 15em;
+   }
+
+
+   /* Media Queries */
+  
+@media only screen and (max-width: 900px) {
+  /* login */
+  .imagebk {
+    background-image: url("https://images.unsplash.com/photo-1491331568367-82b3c8018969?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1868&q=80");
+    background-repeat: no-repeat; 
+    background-position: center;  
+    background-size: cover;
   }
+
+  .transbox{
+    background: rgba(0, 0, 0, 0.3);
+    height: 100vh;
+  }
+
+  .login, .signUpTwo{
+    font-size: 12pt;
+  }
+  .modal-class{
+    width: 80%;
+  }
+  .modal-content{
+    width: 70%;
+  }
+  .categorydiv img{
+    width: 80%;
+  }
+  .profileInformation{
+    width: 100%;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    display: flex;
+    align-items: center;
+    background: white;
+  }
+
+ .profileImg{
+   float: left;
+   margin-left: 15%;
+   align-items: center;
+ }
+
+ .bio-name{
+  float: left;
+  padding-left: 40px;
+  width: 50%;
+  text-align: left;
+  }
+
+  .categoryTitleBlock{
+    background-color: grey;
+    border-radius: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14pt;
+    color: white;
+    font-family: 'Hobo-std';
+    z-index: 2;
+    position: absolute;
+    left: 10%;
+    margin-top: 213px;
+   }
+}
+
+@media only screen and (max-width: 600px) {
+
+  .profileInformation{
+    width: 90%;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    display: flex;
+    align-items: center;
+    background: white;
+  }
+
+ .profileImg{
+   float: left;
+   margin-left: 15%;
+   align-items: center;
+ }
+
+ .bio-name{
+  float: left;
+  padding-left: 20px;
+  width: 50%;
+  text-align: left;
+  font-size: 75%;
+  }
+}

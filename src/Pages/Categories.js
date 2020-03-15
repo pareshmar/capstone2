@@ -1,15 +1,12 @@
 // import firebase from '../Firebase/firebase';
-import React, { Component, useContext } from 'react';
+import React, { Component } from 'react';
 import firebase from 'firebase';
 
 import Logo from '../assets/WeExplore-logo.svg';
 import Error from '../assets/error.svg';
 
 import BottomNav from '../Components/Navigation';
-import { Redirect } from 'react-router-dom';
-import { AuthContext } from '../Auth';
 
-let activity;
 let activityDescription;
 
 let categoryTitle;
@@ -34,13 +31,14 @@ class Categories extends Component {
 
         var database = firebase.database();
 
-        if (event.target.className == 'outdoors') {
+        if (event.target.className === 'outdoors') {
 
             // console.log("outdoors clicked");
 
             categoryTitle = "Outdoors";
 
             array = [];
+             // eslint-disable-next-line
             database.ref('categories/' + 'outdoors').on('value', function (snapshot) {
                 array = snapshot.val();
                 let randomNumber = Math.floor(Math.random() * array.length);
@@ -48,35 +46,38 @@ class Categories extends Component {
             });
 
 
-        } else if (event.target.className == 'social') {
+        } else if (event.target.className === 'social') {
 
             // console.log('social was clicked');
             categoryTitle = "Friends";
 
             array = [];
+             // eslint-disable-next-line
             database.ref('categories/' + 'friends').on('value', function (snapshot) {
                 array = snapshot.val();
                 let randomNumber = Math.floor(Math.random() * array.length);
                 activityDescription = array[randomNumber].description;
             });
 
-        } else if (event.target.className == 'bodyculture') {
+        } else if (event.target.className === 'bodyculture') {
 
             categoryTitle = "Body & Mind";
 
             array = [];
+             // eslint-disable-next-line
             database.ref('categories/' + 'bodyculture').on('value', function (snapshot) {
                 array = snapshot.val();
                 let randomNumber = Math.floor(Math.random() * array.length);
                 activityDescription = array[randomNumber].description;
             });
-        } else if (event.target.className == 'culture') {
+        } else if (event.target.className === 'culture') {
 
             categoryTitle = "Culture";
 
             array = [];
+             // eslint-disable-next-line
             database.ref('categories/' + 'culture').on('value', function (snapshot) {
-                array = snapshot.val();
+                 array = snapshot.val();
                 let randomNumber = Math.floor(Math.random() * array.length);
                 activityDescription = array[randomNumber].description;
             });
@@ -157,28 +158,28 @@ class Categories extends Component {
 
                     <div className="categorydiv">
                         <p style={{ backgroundColor: 'green' }} className="categoryTitleBlock">Outdoors</p>
-                        <img className="outdoors" src="https://images.unsplash.com/photo-1445217143695-467124038776?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1133&q=80" onClick={this.category}></img>
+                        <img className="outdoors" alt="outdoors background" src="https://images.unsplash.com/photo-1445217143695-467124038776?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1133&q=80" onClick={this.category}></img>
                     </div>
 
                     <br />
 
                     <div className="categorydiv">
                         <p style={{ backgroundColor: 'tomato' }} className="categoryTitleBlock">Friends</p>
-                        <img className="social" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80" onClick={this.category}></img>
+                        <img className="social" alt="social background" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80" onClick={this.category}></img>
                     </div>
 
                     <br />
 
                     <div className="categorydiv">
                         <p style={{ backgroundColor: 'navy' }} className="categoryTitleBlock">Body & Mind</p>
-                        <img className="bodyculture" src="https://images.unsplash.com/photo-1557330359-ffb0deed6163?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" onClick={this.category}></img>
+                        <img className="bodyculture" alt="body and mind background" src="https://images.unsplash.com/photo-1557330359-ffb0deed6163?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" onClick={this.category}></img>
                     </div>
 
                     <br />
 
                     <div className="categorydiv">
                         <p style={{ backgroundColor: 'purple' }} className="categoryTitleBlock"> Culture</p>
-                        <img className="culture" src="https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1115&q=80" onClick={this.category}></img>
+                        <img className="culture" alt="culture background" src="https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1115&q=80" onClick={this.category}></img>
                     </div>
 
                 </div>
