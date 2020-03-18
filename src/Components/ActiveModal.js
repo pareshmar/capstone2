@@ -101,12 +101,23 @@ firebase.database().ref('users/' + userId +
           <div className="modal-class" id="modal">
                     <div className="close" onClick={this.closeModal}>&times; </div>
                     <div className="modal-content">
-                     <p>{this.state.activity}</p>
+                     <p><b>{this.state.activity}</b></p>
                     </div>
                     <div className="modal-post"> 
-                    <button  className="delete-activitybtn" onClick={this.testFunc}>Delete this activity</button>
-                     
+                    <p id="space">Complete your activity by documenting your experience.</p>
+                    <img className="usersPostImg" id="postImg"></img>
+                    <textarea className="textarea-post"></textarea>
+                    <label className="private-checkbox"><input type="checkbox"></input>Keep Private</label>
+                    
+
                     </div>
+
+                    <div className="post-buttons">
+                     <button  className="delete-activitybtn" onClick={this.testFunc}>Delete this activity</button>
+                     <button className="completebtn" onClick={this.acceptActivity}>Done</button>
+
+                    </div>
+                    
            </div>
 
 
