@@ -460,9 +460,7 @@ ul.navigationBar{
     transform: translateY(1px);
   }
 
-  /* .errorModal{
-    
-  } */
+ 
 
   /*************** profile **************/
 
@@ -498,6 +496,7 @@ ul.navigationBar{
     height: 50vh;
   }
 
+  /**************************** Active Modal ************************/
   .profileModal{
     background-color: #606060;
     color: white;
@@ -533,6 +532,7 @@ ul.navigationBar{
      background-color: silver;
      width: 100px;
      height: 100px;
+     object-fit: cover;
      border-radius: 25px;
      position: relative;
      margin-right: 1em;

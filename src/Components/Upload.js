@@ -57,9 +57,6 @@ class Upload extends Component {
                         var img = document.getElementById('myimg');
                         img.src = url;
                     })
-
-                   
-
                    
                 },
                 );

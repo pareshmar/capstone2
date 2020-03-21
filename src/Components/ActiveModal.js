@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
- 
+
 let currentActivity;
-let activityIsActive; 
+let activityIsActive;
+let caption;
+let selectedFile;
+let newPostKey = firebase.database().ref().child('posts').push().key;
+
 
 class ActiveModal extends Component {
 
   constructor(props) {
 
     super(props);
-    this.state = { activity:'' }
+    this.state = { activity: '', inputValue: '' }
+    this.handleChange = this.handleChange.bind(this);
+    // this.postData = this.postData.bind(this);
   }
 
   componentDidMount() {
@@ -17,42 +23,33 @@ class ActiveModal extends Component {
     this.ShowModal();
   }
 
-  ShowModal = () =>{
-    
- let profileModal = document.getElementById("thisisatest")
-let userId = firebase.auth().currentUser.uid;
-firebase.database().ref('users/' + userId +
-    '/activeActivity').once('value', function (snapshot) {
+  ShowModal = () => {
+
+    let profileModal = document.getElementById("thisisatest")
+    let userId = firebase.auth().currentUser.uid;
+    firebase.database().ref('users/' + userId +
+      '/activeActivity').once('value', function (snapshot) {
         activityIsActive = snapshot.val();
         if (activityIsActive === null || activityIsActive === '' ||
-            activityIsActive.length <= 0) {
-
-                // console.log("no activity")
-                profileModal.style.display = "none"
+          activityIsActive.length <= 0) {
+          // console.log("no activity")
+          profileModal.style.display = "none"
 
         } else {
-
-            profileModal.style.display = "block"
-
-
+          profileModal.style.display = "block"
         }
-    })
+      })
 
-}
-
- 
+  }
 
   getData = () => {
-
     this.getActivity();
-
     var userId = firebase.auth().currentUser.uid;
 
     return firebase.database().ref('/users/' +
       userId).once('value').then(function (snapshot) {
         currentActivity = snapshot.val().activeActivity
-       })
-
+      })
   }
 
   getActivity = () => {
@@ -60,78 +57,157 @@ firebase.database().ref('users/' + userId +
       this.setState({
         activity: currentActivity
       });
-
     }, 300)
-
   }
 
- 
 
-  activityModal = () =>{
+  activityModal = () => {
     let modal = document.getElementById("modal")
     modal.style.display = "block";
-
   }
 
   closeModal = () => {
     let modal = document.getElementById("modal")
     modal.style.display = "none";
- }
+  }
 
- testFunc() {
+  DeleteActivity() {
     let userId = firebase.auth().currentUser.uid;
     firebase.database().ref('users/' + userId +
       '/activeActivity').once('value', function (snapshot) {
         currentActivity = snapshot.val();
         firebase.database().ref('users/' + userId).update({
           activeActivity: ''
-
         });
         window.location.reload(false);
       })
   }
 
+  handleChange(event) {
+    this.setState({ inputValue: event.target.value });
+  };
+
+  fileSelected = (event) => {
+    //file name
+    selectedFile = event.target.files[0]
+    console.log(selectedFile.name)        
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+     
+        let filename = selectedFile.name;
+
+        const storageRef = firebase.storage().ref(user.uid +
+          '/postImage/' + filename)
+        const uploadTask = storageRef.put(selectedFile)
+
+        uploadTask.on('state_changed', function (snapshot) {
+          var progress = (snapshot.bytesTransferred /
+            snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+
+        }, function (error) {
+          // Handle unsuccessful uploads
+        }, function () {
+
+          storageRef.getDownloadURL().then(url => {
+            
+            firebase.database().ref('users/' + user.uid + '/posts/' + newPostKey ).update({
+              postImage: url
+            });
+            var img = document.getElementById('postImg');
+            img.src = url;
+          })
+
+        },
+        );
+        // ADD EXTRA FUNCTION HERE
+      } else {
+        // User not logged in or has just logged out.
+      }
+    });
+ }
+
+  postData = (e) => {
+    let userId = firebase.auth().currentUser.uid;
+    let checkbox = document.getElementById('checkbox')
+    
+    caption = this.state.inputValue;
+  
+    if (caption === undefined || caption === null || caption === "" ||
+      caption.length <= 0 || selectedFile === null || selectedFile ===
+      undefined) {
+      e.preventDefault();
+      console.log("stopped");
+    } else {
+     
+      console.log('run');
+      firebase.database().ref('users/' + userId + '/' + 'posts/' +
+        newPostKey).update({
+          userCaption: caption
+        });
+    }
+
+
+    if(checkbox.checked == false){
+      console.log("public")
+      firebase.database().ref('users/' + userId + '/' + 'posts/' +
+        newPostKey).update({
+          private: false
+        });
+
+    }else{
+      console.log('Private')
+      firebase.database().ref('users/' + userId + '/' + 'posts/' +
+      newPostKey).update({
+        private: true
+      });
+    }
+
+    this.DeleteActivity()
+  }
+
+
+ 
 
   render() {
     return (
       <div>
+        <button className="profileModal" id="thisisatest"
+          onClick={this.activityModal}><b>Your Activity</b></button>
+        <div className="modal-class" id="modal">
+          <div className="close" onClick={this.closeModal}>&times; </div>
+          <div className="modal-content">
+            <p><b>{this.state.activity}</b></p>
+          </div>
 
-          <button className="profileModal" id="thisisatest" onClick={this.activityModal}><b>Your Activity</b></button>
+          <form onSubmit={this.postData}>
+            <div className="modal-post">
+              <p id="space">Complete your activity by documenting your experience.</p>
 
-          <div className="modal-class" id="modal">
-                    <div className="close" onClick={this.closeModal}>&times; </div>
-                    <div className="modal-content">
-                     <p><b>{this.state.activity}</b></p>
-                    </div>
-                    <div className="modal-post"> 
-                    <p id="space">Complete your activity by documenting your experience.</p>
-                    <img className="usersPostImg" id="postImg"></img>
-                    <textarea className="textarea-post"></textarea>
-                    <label className="private-checkbox"><input type="checkbox"></input>Keep Private</label>
-                    
+              <img className="usersPostImg" id="postImg"></img>
+              <input type="file" onChange={this.fileSelected}></input>
+              <textarea value={this.state.value}
+                onChange={this.handleChange} name="caption" required
+                className="textarea-post" placeholder="Add caption..."></textarea>
 
-                    </div>
+                {/* Maybe use onchange?  */}
+              <label className="private-checkbox"><input
+               id="checkbox" type="checkbox"></input>Keep Private</label>
+            </div>
 
-                    <div className="post-buttons">
-                     <button  className="delete-activitybtn" onClick={this.testFunc}>Delete this activity</button>
-                     <button className="completebtn" onClick={this.acceptActivity}>Done</button>
-
-                    </div>
-                    
-           </div>
-
-
+            <div className="post-buttons">
+              <button className="delete-activitybtn"
+                onClick={this.DeleteActivity}>Delete this activity</button>
+              <button className="completebtn" type="submit">Done</button>
+            </div>
+          </form>
         </div>
-       
 
-    
-        
- 
+      </div>
+
     );
   }
-
-
-
 
 }
 
