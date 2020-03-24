@@ -178,7 +178,7 @@ class ActiveModal extends Component {
         <div className="modal-class" id="modal">
           <div className="close" onClick={this.closeModal}>&times; </div>
           <div className="modal-content">
-            <p><b>{this.state.activity}</b></p>
+            <p>Your Activity: <b>{this.state.activity}</b></p>
           </div>
 
           <form onSubmit={this.postData}>
@@ -186,10 +186,10 @@ class ActiveModal extends Component {
               <p id="space">Complete your activity by documenting your experience.</p>
 
               <img className="usersPostImg" id="postImg"></img>
-              <input type="file" onChange={this.fileSelected}></input>
+              <input type="file" id="file" onChange={this.fileSelected}></input>
               <textarea value={this.state.value}
                 onChange={this.handleChange} name="caption" required
-                className="textarea-post" placeholder="Add caption..."></textarea>
+                className="textarea-post" style={{padding: '15px'}} placeholder="write your caption here"></textarea>
 
                 {/* Maybe use onchange?  */}
               <label className="private-checkbox"><input

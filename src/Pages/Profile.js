@@ -67,7 +67,7 @@ class Profile extends Component {
           {/* Profile Header Information - Picture, Username,Biography */}
           <div className="profileInformation">
 
-            <img className="image profileImg" alt="user" id="myimg"
+            <img className="image2 profileImg" id="myimg"
               src={this.state.image} />
             <div className="bio-name">
               <h3>{this.state.userName}</h3>

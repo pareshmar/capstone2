@@ -73,8 +73,7 @@ class Upload extends Component {
     render() {
         return (
             <div className="uploading">
-                <input type="file" onChange={this.fileSelected}></input>
-                <br />
+                <input type="file" id="file2" onChange={this.fileSelected}></input>
                 <img className="image" id="myimg" />
             </div>
         )
