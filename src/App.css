@@ -20,7 +20,7 @@ h2,h3,h4{font-family: 'Spartan';}
   height:100px;
   border-radius: 50%;
   object-fit: cover;
-  background: url('https://image.flaticon.com/icons/svg/685/685669.svg') center no-repeat #c2c2c2; 
+  background: url('https://image.flaticon.com/icons/svg/685/685669.svg') center no-repeat #dfdfdf; 
   background-size: 50px 50px; 
 }
 
@@ -511,14 +511,14 @@ ul.navigationBar{
   }
 
  
-  .posts{
+  /* .posts{
     display: flex;
      margin: 2% 13%;
     border: 2px solid rgb(153, 151, 151, 0.3);
     border-radius: 12px;
     width: 80v;
     height: 50vh;
-  }
+  } */
 
   /**************************** Active Modal ************************/
   .profileModal{
@@ -589,7 +589,7 @@ ul.navigationBar{
      border-radius: 25px;
      position: relative;
      margin-right: 1em;
-     background: url('https://image.flaticon.com/icons/svg/685/685669.svg') center no-repeat #c2c2c2;
+     background: url('https://image.flaticon.com/icons/svg/685/685669.svg') center no-repeat #dfdfdf;
      background-size: 50px 50px;
    }
 

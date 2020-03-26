@@ -47,10 +47,12 @@ const SignUpTwo = ({ history }) => {
         </div>
 
       <Upload></Upload>
+      <p><small>upload your picture</small></p>
+      <br/>
       <p>Tell us about yourself!</p>
 
       <form onSubmit={handleSubmit}>
-          <p style={{fontSize: '9pt'}}><i> * should not be longer than 80 characters *</i></p>
+          {/* <p style={{fontSize: '9pt'}}><i> * should not be longer than 80 characters *</i></p> */}
           <textarea className="text-description" name="biodetails" type="textarea" placeholder="Write here.."/>
           <br/>
           <input  id="nextbtn" type="submit" value="Submit" Link to= "/"/>
